@@ -13,15 +13,17 @@ import (
 
 // SGClient will contain the credentials and default values
 type SGHTTPClient struct {
-	apiUser        string
-	apiPwd         string
-	baseURI        string
-	NumRequests    int
-	JSONWriter     io.Writer
-	client         http.Client
-	Bounce         *BounceService
-	ASMGroup       *ASMGroupService
-	ASMSuppression *ASMSuppressionService
+	apiUser           string
+	apiPwd            string
+	baseURI           string
+	NumRequests       int
+	JSONWriter        io.Writer
+	client            http.Client
+	Bounce            *BounceService
+	ASMGroup          *ASMGroupService
+	ASMSuppression    *ASMSuppressionService
+	GlobalSuppression *GlobalSuppressionService
+	APIKey            *APIKeyService
 }
 
 var baseURI = "https://api.sendgrid.com/v3"
@@ -35,6 +37,8 @@ func NewSendGridHTTPClient(apiUser, apiPwd string) *SGHTTPClient {
 	c.Bounce = &BounceService{c}
 	c.ASMGroup = &ASMGroupService{c}
 	c.ASMSuppression = &ASMSuppressionService{c}
+	c.GlobalSuppression = &GlobalSuppressionService{c}
+	c.APIKey = &APIKeyService{c}
 	return c
 }
 

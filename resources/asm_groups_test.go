@@ -62,7 +62,7 @@ func TestASMGroupList(t *testing.T) {
 	})
 }
 
-func TestDelete(t *testing.T) {
+func TestASMGroupDelete(t *testing.T) {
 	setup()
 	defer teardown()
 

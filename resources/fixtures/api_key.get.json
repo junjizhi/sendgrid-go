@@ -1,0 +1,9 @@
+{
+  "api_key_id": "123445678",
+  "name": "My API Key",
+  "scopes": [
+    "mail.send",
+    "alerts.create",
+    "alerts.read"
+  ]
+}
