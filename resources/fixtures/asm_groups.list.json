@@ -1,0 +1,14 @@
+[
+  {
+    "id": 100,
+    "name": "Newsletters",
+    "description": "Our monthly newsletter.",
+    "unsubscribes": 400
+  },
+  {
+    "id": 101,
+    "name": "Alerts",
+    "description 2": "Emails triggered by user-defined rules.",
+    "unsubscribes": 1
+  }
+]
