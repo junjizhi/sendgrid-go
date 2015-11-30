@@ -1,5 +1,5 @@
 # SendGrid-Go
-[![GoDoc](https://godoc.org/github.com/sendgrid/sendgrid-go?status.png)](http://godoc.org/github.com/sendgrid/sendgrid-go) 
+[![GoDoc](https://godoc.org/github.com/sendgrid/sendgrid-go?status.png)](http://godoc.org/github.com/sendgrid/sendgrid-go)
 Visit the GoDoc.
 
 [![Build Status](https://travis-ci.org/sendgrid/sendgrid-go.svg?branch=master)](https://travis-ci.org/sendgrid/sendgrid-go)
@@ -230,37 +230,37 @@ To begin using SendGrid's web api v3, call NewSendGridHTTPClient with your SendG
 ### Creating a Client
 
 ```go
-	import "github.com/sendgrid/sendgrid-go/resources"
+import "github.com/sendgrid/sendgrid-go/resources"
 
-	sg := sendgrid.NewSendGridHTTPClient("sendgrid_user", "sendgrid_key")
-	// or
-	sg := sendgrid.NewSendGridHTTPClientWithAPIKey("sendgrid_api_key")
+sg := sendgrid.NewSendGridHTTPClient("sendgrid_user", "sendgrid_key")
+// or
+sg := sendgrid.NewSendGridHTTPClientWithAPIKey("sendgrid_api_key")
 ```
 
 ### Example
 
 ```go
-	package main
+package main
 
-	import (
-		"fmt"
+import (
+	"fmt"
 
-		"github.com/sendgrid/sendgrid-go/resources"
-	)
+	"github.com/sendgrid/sendgrid-go/resources"
+)
 
-	func main() {
-		sg := sendgrid.NewSendGridHTTPClient("sendgrid_api_user", "sendgrid_api_key")
+func main() {
+	sg := sendgrid.NewSendGridHTTPClient("sendgrid_api_user", "sendgrid_api_key")
 
-		bl, err := sg.Bounce.List(&sendgrid.BounceListRequest{StartTime: "start_time", EndTime: "end_time"})
-		if err != nil {
-			panic(err)
-		}
-
-		for _, b := range bl {
-			fmt.Println(b.Email, b.Reason)
-		}
-
+	bl, err := sg.Bounce.List(&sendgrid.BounceListRequest{StartTime: "start_time", EndTime: "end_time"})
+	if err != nil {
+		panic(err)
 	}
+
+	for _, b := range bl {
+		fmt.Println(b.Email, b.Reason)
+	}
+
+}
 ```
 
 ###Tests
