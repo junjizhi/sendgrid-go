@@ -45,12 +45,14 @@ func NewSendGridHTTPClient(apiUser, apiPwd string) *SGHTTPClient {
 // NewSendGridHTTPClientWithAPIKey will return a new SG HTTP Client. Used for api key
 func NewSendGridHTTPClientWithAPIKey(apiKey string) *SGHTTPClient {
 
-	Client := &SGHTTPClient{
-		apiPwd:  apiKey,
-		baseURI: baseURI,
-	}
-
-	return Client
+	c := &SGHTTPClient{}
+	c.apiPwd = apiKey
+	c.Bounce = &BounceService{c}
+	c.ASMGroup = &ASMGroupService{c}
+	c.ASMSuppression = &ASMSuppressionService{c}
+	c.GlobalSuppression = &GlobalSuppressionService{c}
+	c.APIKey = &APIKeyService{c}
+	return c
 }
 
 func (sg *SGHTTPClient) NewRequest(method string, endpoint string, data interface{}) (req *http.Request, err error) {
@@ -80,7 +82,12 @@ func (sg *SGHTTPClient) NewRequest(method string, endpoint string, data interfac
 		if err != nil {
 			return
 		}
-		req.SetBasicAuth(sg.apiUser, sg.apiPwd)
+		if sg.apiUser == "" {
+			req.Header.Set("Authorization", "Bearer "+sg.apiPwd)
+		} else {
+			req.SetBasicAuth(sg.apiUser, sg.apiPwd)
+		}
+
 		req.Header.Set("Accept", "application/json")
 		req.Header.Set("Content-Type", "application/json")
 	case "POST":
@@ -95,7 +102,11 @@ func (sg *SGHTTPClient) NewRequest(method string, endpoint string, data interfac
 		if err != nil {
 			return
 		}
-		req.SetBasicAuth(sg.apiUser, sg.apiPwd)
+		if sg.apiUser == "" {
+			req.Header.Set("Authorization", "Bearer "+sg.apiPwd)
+		} else {
+			req.SetBasicAuth(sg.apiUser, sg.apiPwd)
+		}
 		req.Header.Set("Accept", "application/json")
 		req.Header.Set("Content-Type", "application/json")
 	default:

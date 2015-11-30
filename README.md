@@ -222,6 +222,47 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 Kudos to [Matthew Zimmerman](https://github.com/mzimmerman) for this example.
 
+
+## SendGrid's  [WEB API v3](https://sendgrid.com/docs/API_Reference/Web_API_v3/)
+
+To begin using SendGrid's web api v3, call NewSendGridHTTPClient with your SendGrid credentials OR NewSendGridHTTPClientWithApiKey with a SendGrid API Key. API Key is the preferred method. API Keys are in beta. To configure API keys, visit https://sendgrid.com/beta/settings/api_key.
+
+### Creating a Client
+
+```go
+	import "github.com/sendgrid/sendgrid-go/resources"
+
+	sg := sendgrid.NewSendGridHTTPClient("sendgrid_user", "sendgrid_key")
+	// or
+	sg := sendgrid.NewSendGridHTTPClientWithAPIKey("sendgrid_api_key")
+```
+
+### Example
+
+```go
+	package main
+
+	import (
+		"fmt"
+
+		"github.com/sendgrid/sendgrid-go/resources"
+	)
+
+	func main() {
+		sg := sendgrid.NewSendGridHTTPClient("sendgrid_api_user", "sendgrid_api_key")
+
+		bl, err := sg.Bounce.List(&sendgrid.BounceListRequest{StartTime: "start_time", EndTime: "end_time"})
+		if err != nil {
+			panic(err)
+		}
+
+		for _, b := range bl {
+			fmt.Println(b.Email, b.Reason)
+		}
+
+	}
+```
+
 ###Tests
 
 Please run the test suite in before sending a pull request.

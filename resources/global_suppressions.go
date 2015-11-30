@@ -1,9 +1,3 @@
-// GET https://api.sendgrid.com/v3/asm/suppressions/global/:email_address HTTP/1.1
-// HTTP/1.1 200
-// {
-//   "recipient_email": "test1@example.com"
-// }
-
 package sendgrid
 
 import "net/http"
