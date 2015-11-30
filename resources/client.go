@@ -119,7 +119,7 @@ func (sg *SGHTTPClient) NewRequest(method string, endpoint string, data interfac
 // Do performs the given http.Request and optionally
 // decodes the JSON response into the given data struct.
 func (sg *SGHTTPClient) Do(req *http.Request, data interface{}) error {
-	fmt.Println(req.Method, req.URL)
+	// fmt.Println(req.Method, req.URL)
 	resp, err := sg.client.Do(req)
 	if err != nil {
 		return err

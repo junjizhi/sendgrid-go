@@ -268,7 +268,7 @@ func main() {
 Please run the test suite in before sending a pull request.
 
 ```bash
-go test -v
+go test ./... -v
 ```
 
 ### TODO:
